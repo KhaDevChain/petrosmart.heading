@@ -47,5 +47,5 @@ public class User implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "permissionId")
-    private Permisstion permisstion;
+    private Permission permisstion;
 }

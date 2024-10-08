@@ -24,7 +24,7 @@ public class ChainServiceImpl implements ChainService {
 
     @Override
     public Chain findBySKU(String sku) {
-        return chainRepo.findBySKU(sku);
+        return chainRepo.findBySKU(sku).orElse(null);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ChainServiceImpl implements ChainService {
 
     @Override
     public List<Chain> findByChainNameLike(String character) {
-        return chainRepo.findByChainNameLike(character);
+        return chainRepo.findByChainNameContaining(character);
     }
 
     @Override

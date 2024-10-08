@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
     @UniqueConstraint(columnNames = {"uniqueId", "groupName", "groupPermission"})
 })
 @Data
-public class Permisstion implements Serializable {
+public class Permission implements Serializable {
     @Id
     @Column(name = "uniqueId", columnDefinition = "varchar(50)", nullable = false)
     private String UniqueId;

@@ -14,7 +14,6 @@ public interface ChainService {
     List<Chain> findChains();
     List<Chain> findByChainNameLike(String character);
 
-
     Page<Chain> findChains(Pageable pageable);
     Page<Chain> findChains(int page, int size);
 }

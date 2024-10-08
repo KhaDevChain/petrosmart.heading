@@ -24,8 +24,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> getAccountLikeName(String accountName) {
-        return accountRepo.findByAccountNameLike(accountName);
+    public List<Account> getAccountNameLike(String accountName) {
+        return accountRepo.findByAccountNameContaining(accountName);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Page<Account> getAccountLikeName(String accountName, int page, int size) {
+    public Page<Account> getAccountNameLike(String accountName, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return accountRepo.findByNameContaining(accountName, pageable);
+        return accountRepo.findByAccountNameContaining(accountName, pageable);
     }
 
     @Override
@@ -52,11 +52,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account findByTaxOrPhone(String tax, String phone) {
-        return accountRepo.findByTaxOrPhone(tax, phone);
+        return accountRepo.findByTaxOrPhone(tax, phone).orElse(null);
     }
 
     @Override
     public Account findBySKU(String sku) {
-        return accountRepo.findBySKU(sku);
+        return accountRepo.findBySKU(sku).orElse(null);
     }
 }

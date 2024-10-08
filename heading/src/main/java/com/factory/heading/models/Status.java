@@ -20,7 +20,7 @@ public class Status {
     private int UniqueId;
 
     @Column(name = "statusName", columnDefinition = "varchar(50)", nullable = false)
-    private String StationName;
+    private String StatusName;
 
     @Column(name = "createdAt", columnDefinition = "datetime")
     private LocalDateTime CreatedAt = LocalDateTime.now();
