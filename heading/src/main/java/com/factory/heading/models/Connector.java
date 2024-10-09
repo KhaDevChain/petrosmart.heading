@@ -30,11 +30,11 @@ public class Connector {
     private Chain chain;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "stationId", nullable = false)
+    @JoinColumn(name = "station_id", nullable = false)
     private Station station;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "statusId", nullable = false)
+    @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
     @Column(name = "statusName", columnDefinition = "varchar(50)", nullable = false)

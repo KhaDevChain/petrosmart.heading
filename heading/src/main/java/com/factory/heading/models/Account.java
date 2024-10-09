@@ -49,10 +49,10 @@ public class Account implements Serializable {
     private LocalDateTime CreatedAt = LocalDateTime.now();
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "chainId", nullable = false)
+    @JoinColumn(name = "chain_id", nullable = false)
     private Chain chain;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User CreatedBy;
 }

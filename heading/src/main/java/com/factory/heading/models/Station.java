@@ -44,6 +44,6 @@ public class Station {
     private LocalDateTime CreatedAt = LocalDateTime.now();
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "chainId", nullable = false)
+    @JoinColumn(name = "chain_id", nullable = false)
     private Chain chain;
 }
