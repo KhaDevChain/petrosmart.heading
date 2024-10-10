@@ -45,9 +45,6 @@ public class User implements Serializable {
     @Column(name = "createdAt", columnDefinition = "datetime")
     private LocalDateTime CreatedAt = LocalDateTime.now();
 
-    @Column(name = "roleType", columnDefinition = "varchar(25)", nullable = false)
-    private String RoleType;
-
     @Column(name = "activated", columnDefinition = "boolean")
     private boolean Activated = false;
 

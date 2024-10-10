@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;
 import com.factory.heading.models.User;
 
 public interface UserService {
+    // VOID
+    User save(User user);
+
     //OBJECT
     User findById(String uniqueId);
     User findByUsername(String username);

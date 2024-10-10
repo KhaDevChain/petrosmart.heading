@@ -16,9 +16,18 @@ public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
             AuthenticationException authException) throws IOException, ServletException {
-                
-        // Gửi phản hồi khi yêu cầu không được xác thực
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized: Authentication token was either missing or invalid.");
+
+        // Kiểm tra nếu request yêu cầu tài nguyên cấm, trả về lỗi FORBIDDEN (403)
+        if (request.getAttribute("isForbidden") != null && (Boolean) request.getAttribute("isForbidden")) {
+            response.sendError(
+                HttpServletResponse.SC_FORBIDDEN, 
+                "Forbidden: You don't have permission to access this resource.");
+        } else {
+            // Nếu không, trả về lỗi UNAUTHORIZED (401)
+            response.sendError(
+                HttpServletResponse.SC_UNAUTHORIZED, 
+                "Unauthorized: Authentication token was either missing or invalid.");
+        }  
     }
     
 }

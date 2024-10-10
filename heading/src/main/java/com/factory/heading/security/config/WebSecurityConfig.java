@@ -3,6 +3,8 @@ package com.factory.heading.security.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -27,6 +29,13 @@ public class WebSecurityConfig {
     @Autowired
     protected AuthenticationEntryPoint authenticationEntryPoint;
 
+    // cấp quyền cho các controller có thể sử dụng
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    // cấp quyền filter xác nhận token cho các domain
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -41,16 +50,12 @@ public class WebSecurityConfig {
             .exceptionHandling(exception -> 
                 exception.authenticationEntryPoint(authenticationEntryPoint))
             .authorizeHttpRequests(author ->
-                author.anyRequest()
-                      .authenticated()
-                      .requestMatchers("/login").permitAll()
-                      .requestMatchers("/**").permitAll()
+                author.requestMatchers("/login", "/signup").permitAll()
                       .anyRequest().authenticated());
         
-        http.addFilterBefore(
-            jwtAuthenticationFilter, 
-            UsernamePasswordAuthenticationFilter.class
-        );
+        http
+            .addFilterBefore(jwtAuthenticationFilter, 
+                             UsernamePasswordAuthenticationFilter.class);
         
         return http.build();
 

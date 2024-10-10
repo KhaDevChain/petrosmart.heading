@@ -6,9 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
-import com.factory.heading.security.detail.UserDetailsImpl;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -94,7 +93,7 @@ public class JwtUtils {
     /**
      * WRITE
      */
-    public String createToken(UserDetailsImpl userDetailsImpl) {
+    public String createToken(UserDetails userDetailsImpl) {
         Long expireTime = Long.parseLong(EXPIRATION_TIME);
         final Date createdDate = new Date();
         final Date expiredDate = new Date(createdDate.getTime() + expireTime);
