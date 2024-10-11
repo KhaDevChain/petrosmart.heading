@@ -11,8 +11,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.factory.heading.models.User;
-import com.factory.heading.repository.RoleRepo;
-import com.factory.heading.repository.UserRepo;
 import com.factory.heading.security.config.PBKDF2PasswordEncoder;
 import com.factory.heading.security.detail.UserDetailServiceImpl;
 import com.factory.heading.security.jwt.JwtUtils;
