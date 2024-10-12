@@ -48,7 +48,7 @@ public class RestLoginController {
     private PBKDF2PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
-    public LoginResponse authenticate(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginRequest loginRequest) {
         try {
             // xác thực người dùng
             Authentication authentication = authenticationManager.authenticate(
@@ -64,9 +64,12 @@ public class RestLoginController {
             String jwt = jwtUtils.createToken(
                 userDetailService.loadUserByUsername(loginRequest.getUsername())
             );
-            return new LoginResponse(loginRequest.getUsername(), jwt);
+            return ResponseEntity
+                        .ok(new LoginResponse(200, loginRequest.getUsername(), jwt, "Susscess login !"));
         } catch (AuthenticationException e) {
-            throw new RuntimeException(e.getMessage());
+            return ResponseEntity
+                        .status(401)
+                        .body(new LoginResponse(401, loginRequest.getUsername(), null, e.getMessage()));
         }
     }
     
