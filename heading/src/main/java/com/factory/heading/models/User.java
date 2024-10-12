@@ -2,18 +2,12 @@ package com.factory.heading.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -49,13 +43,14 @@ public class User implements Serializable {
     private boolean Activated = false;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "roleId", nullable = false)
     private Role role;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnore
-    @JoinTable(name = "user_roles",
-               joinColumns = @JoinColumn(name = "user_id"), 
-               inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    // Nếu 1 user có nhiều Role
+    // @ManyToMany(fetch = FetchType.EAGER)
+    // @JsonIgnore
+    // @JoinTable(name = "user_roles",
+    //            joinColumns = @JoinColumn(name = "user_id"), 
+    //            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    // private Set<Role> roles;
 }

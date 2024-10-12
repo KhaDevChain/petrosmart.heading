@@ -29,10 +29,13 @@ CREATE TABLE `permissions` (
   `group_name` varchar(20) NOT NULL,
   `group_permission` varchar(300) NOT NULL,
   `created_at` datetime DEFAULT NULL,
+  `role_id` bigint DEFAULT NULL,
   PRIMARY KEY (`unique_id`),
   UNIQUE KEY `UKh0nlpx1ggfkjglmjfqir590is` (`group_name`,`group_permission`),
   UNIQUE KEY `UKe5nh85wx595gir0ekfpr7ioss` (`unique_id`,`group_name`,`group_permission`),
-  UNIQUE KEY `UKsfl32i61teqw2mprr4naxs7rp` (`group_name`)
+  UNIQUE KEY `UKsfl32i61teqw2mprr4naxs7rp` (`group_name`),
+  KEY `FKmvliun0ngpho0bltt7j6ycqgc` (`role_id`),
+  CONSTRAINT `FKmvliun0ngpho0bltt7j6ycqgc` FOREIGN KEY (`role_id`) REFERENCES `roles` (`unique_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-06 22:56:32
+-- Dump completed on 2024-10-12 13:24:11

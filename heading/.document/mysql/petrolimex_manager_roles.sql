@@ -16,40 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `stations`
+-- Table structure for table `roles`
 --
 
-DROP TABLE IF EXISTS `stations`;
+DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stations` (
-  `unique_id` varchar(50) NOT NULL,
-  `activated` tinyint(1) DEFAULT NULL,
-  `address` varchar(120) NOT NULL,
+CREATE TABLE `roles` (
+  `unique_id` bigint NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
-  `hotline` varchar(13) DEFAULT NULL,
-  `sku` varchar(15) NOT NULL,
-  `station_name` varchar(30) NOT NULL,
-  `tax` varchar(10) DEFAULT NULL,
-  `chain_id` varchar(50) NOT NULL,
+  `role_name` varchar(70) NOT NULL,
   PRIMARY KEY (`unique_id`),
-  UNIQUE KEY `UK55cgm9egvkwu71psdhcblub9o` (`sku`),
-  UNIQUE KEY `UKg2b6qhq31rj7r1lk2mq5r2d48` (`station_name`),
-  UNIQUE KEY `UK9yqpuxp6jyd7ts78hq9sjgw6g` (`station_name`,`tax`),
-  UNIQUE KEY `UK8yfxqpcxxag0xk51ojr9r6f1e` (`station_name`,`tax`,`sku`),
-  UNIQUE KEY `UK8dkk0bjusja92pjpg6hobj8be` (`station_name`,`tax`,`chain_id`),
-  KEY `FK4twbr121ffx1qcg1dbw5xpfea` (`chain_id`),
-  CONSTRAINT `FK4twbr121ffx1qcg1dbw5xpfea` FOREIGN KEY (`chain_id`) REFERENCES `chains` (`unique_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `UK716hgxp60ym1lifrdgp67xt5k` (`role_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stations`
+-- Dumping data for table `roles`
 --
 
-LOCK TABLES `stations` WRITE;
-/*!40000 ALTER TABLE `stations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `stations` ENABLE KEYS */;
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'2024-10-09 12:29:15','ADMIN'),(2,'2024-10-09 12:22:45','MANAGER'),(3,'2024-10-09 08:29:19','DEVELOPER'),(4,'2024-10-09 08:29:19','SALE');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

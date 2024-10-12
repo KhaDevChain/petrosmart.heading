@@ -28,17 +28,16 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT NULL,
   `fullname` varchar(70) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `role_type` varchar(25) NOT NULL,
   `sku` varchar(21) NOT NULL,
   `username` varchar(70) NOT NULL,
-  `permission_id` varchar(50) DEFAULT NULL,
+  `role_id` bigint NOT NULL,
   PRIMARY KEY (`unique_id`),
   UNIQUE KEY `UKd6xyhtosgqstkla6od5whrb24` (`sku`,`username`),
   UNIQUE KEY `UK6l9937cg2awe83xtvtabi44w3` (`sku`,`username`,`unique_id`),
   UNIQUE KEY `UK8ag52y1neqi9vp91eryvuw6hp` (`sku`),
   UNIQUE KEY `UKr43af9ap4edm43mmtq01oddj6` (`username`),
-  KEY `FK4rol00buvqxw3ehwxcwlw5glf` (`permission_id`),
-  CONSTRAINT `FK4rol00buvqxw3ehwxcwlw5glf` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`unique_id`)
+  KEY `FKp56c1712k691lhsyewcssf40f` (`role_id`),
+  CONSTRAINT `FKp56c1712k691lhsyewcssf40f` FOREIGN KEY (`role_id`) REFERENCES `roles` (`unique_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -60,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-06 22:56:32
+-- Dump completed on 2024-10-12 13:24:11
